@@ -19,4 +19,27 @@ public class Rental {
 	}
 	
 
+	double getCharge(){//TODO Move method amountFor to a correct object
+		double result = 0; 
+		switch (getmMovie().getmPriceCode()) {
+		case Movie.REGULAR:
+			result += 2;
+			if(getmDaysRented() > 2){
+				result += (getmDaysRented() - 2 ) * 1.5;
+			}				
+			break;
+		case Movie.NEW_RELEASE:
+			result += getmDaysRented() * 3;
+			break;
+		case Movie.CHILDRENS:
+			result += 1.5;
+			if(getmDaysRented() > 3){
+				result += (getmDaysRented() - 3) * 1.5;					
+			}
+			
+		default:
+			break;
+		}
+		return result;
+	}
 }
