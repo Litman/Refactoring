@@ -41,8 +41,8 @@ public class Customer {
 			
 			//show figures for this rental
 			result += "\t" + each.getmMovie().getmTitle() + "\t" +
-					String.valueOf(each.getCharge() + "\n");
-			totalAmount += each.getCharge();
+					String.valueOf(thisAmount + "\n");
+			totalAmount += thisAmount;
 		}
 		//add footer lines
 		result += "Amount owed is " + String.valueOf(totalAmount) + "\n";
