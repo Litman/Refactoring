@@ -29,26 +29,8 @@ public class Customer {
 			Rental each = (Rental) rentals.nextElement();
 			
 			//determine amounts for each line
-			thisAmount = amountFor(each); //TODO Refactorizando el switch
-			/*switch (each.getmMovie().getmPriceCode()) {
-			case Movie.REGULAR:
-				thisAmount += 2;
-				if(each.getmDaysRented() > 2){
-					thisAmount += (each.getmDaysRented() - 2 ) * 1.5;
-				}				
-				break;
-			case Movie.NEW_RELEASE:
-				thisAmount += each.getmDaysRented() * 3;
-				break;
-			case Movie.CHILDRENS:
-				thisAmount += 1.5;
-				if(each.getmDaysRented() > 3){
-					thisAmount += (each.getmDaysRented() - 3) * 1.5;					
-				}
-				
-			default:
-				break;
-			}*///TODO Finish to refactoring Switch
+			
+			thisAmount = each.getCharge(); //TODO Refactorizando el switch
 			
 			// add frequent renter points
 			frequentRenterPoints ++;
@@ -56,8 +38,13 @@ public class Customer {
 			if((each.getmMovie().getmPriceCode() == Movie.NEW_RELEASE) && each.getmDaysRented() > 1){
 				frequentRenterPoints ++;
 			} 
+			
+			//show figures for this rental
+			result += "\t" + each.getmMovie().getmTitle() + "\t" +
+					String.valueOf(each.getCharge() + "\n");
+			totalAmount += each.getCharge();
 		}
-		//show figures for this rental
+		//add footer lines
 		result += "Amount owed is " + String.valueOf(totalAmount) + "\n";
 		result += "You earned " + String.valueOf(frequentRenterPoints) + " frequent renter points";
 		
