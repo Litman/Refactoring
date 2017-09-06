@@ -25,24 +25,14 @@ public class Customer {
 		Enumeration rentals = mRentals.elements();
 		String result = "Rental Record for "+ getmName() + "\n";
 		while(rentals.hasMoreElements()){
-			double thisAmount = 0;
 			Rental each = (Rental) rentals.nextElement();
 			
-			//determine amounts for each line
-			
-			thisAmount = each.getCharge(); //TODO Refactorizando el switch
-			
-			// add frequent renter points
-			frequentRenterPoints ++;
-			// add bonus for a two day new release rental
-			if((each.getmMovie().getmPriceCode() == Movie.NEW_RELEASE) && each.getmDaysRented() > 1){
-				frequentRenterPoints ++;
-			} 
+			frequentRenterPoints += each.getFrequentRenterPoints();
 			
 			//show figures for this rental
 			result += "\t" + each.getmMovie().getmTitle() + "\t" +
-					String.valueOf(thisAmount + "\n");
-			totalAmount += thisAmount;
+					String.valueOf(each.getCharge() + "\n");
+			totalAmount += each.getCharge();
 		}
 		//add footer lines
 		result += "Amount owed is " + String.valueOf(totalAmount) + "\n";
